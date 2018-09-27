@@ -43,8 +43,8 @@ var AugmentedData = (function () {
 
 }());
 
-/* exported searchCatalog */
-function searchCatalog() {
+/* exported importAugmentedData */
+function importAugmentedData() {
 
   AugmentedData.importAugmentedData();
 }

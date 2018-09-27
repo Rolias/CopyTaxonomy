@@ -47,7 +47,7 @@ var CopyTaxonomy = (function () {
 }());
 
 /* exported copyData */
-function copyData() {
+function copyTaxonomyData() {
   CopyTaxonomy.copyCertifiedToHelper();
   
 }
