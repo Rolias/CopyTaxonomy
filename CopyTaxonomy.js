@@ -36,6 +36,7 @@ var CopyTaxonomy = (function () {
     const sheet = getHelperSheet();
     copyDataToSheet(fullData, sheet);
     sheet.deleteRows(1, 4);
+    sheet.setFrozenRows(1);
   }
 
   return {
