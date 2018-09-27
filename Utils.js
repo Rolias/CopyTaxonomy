@@ -1,7 +1,7 @@
 var Utils = (function () {
   'use strict';
   const SRC_SHEET_NAME = "AugCatalogImport";
-  const DEST_SHEET_NAME = "CoursePerTagging";
+  const DEST_SHEET_NAME = "CoursesPerTagging";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
   function fillInColInfo() {
@@ -9,8 +9,8 @@ var Utils = (function () {
     const source_sheet = ss.getSheetByName(SRC_SHEET_NAME);
     const dest_sheet = ss.getSheetByName(DEST_SHEET_NAME);
 
-    const START_ROW = 4;
-    const MAX_ROW = 8;
+    const START_ROW = 5;
+    const MAX_ROW = 14;
     var dest_col = 1;
     var dest_row = START_ROW;
     const COL_INCREMENT = 2;
