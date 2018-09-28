@@ -26,9 +26,13 @@ function resetColumnSelection() {
 
   var col;
   var row;
-  for (col = 1; col < 6; col += 2) {
-    for (row = 0; row < 12; ++row) {
-      if (col < 2 && row < 8) {
+  const COL_SKIP = 2;
+  const MAX_COL = 6;
+  const MAX_ROW = 12;
+  
+  for (col = 1; col < MAX_COL; col += COL_SKIP) {
+    for (row = 0; row < MAX_ROW; ++row) {
+      if (col < 2 && row < 3) {
         grid[row][col] = true;
       } else {
         grid[row][col] = false;
