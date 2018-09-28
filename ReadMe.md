@@ -46,6 +46,7 @@ I tried to protect all the areas on the sheets where you shouldn’t enter data 
 1. A lot is going on behind the scenes so certain actions might not be as quick as you would expect. For instance, as you select each dropdown, it might take a second or two for the next list to populate. If you’re fast at switching sheets, you might need to wait another second or so for the most recent course data to be populated on the `Courses Per Tagging` sheet. You get a visual indicator when the sheet is busy, a progress bar in the upper right-hand corner of the spreadsheet (in the toolbar area) is shown. 
 2. While searching courses, if you ONLY specify the superdomain, the search is limited to returning just the first 100 courses. This was done to make the sheet a bit more responsive.
 3. Since this is a google spreadsheet it is shared with multiple people. This could be a problem if two (or more) people are trying to use this spreadsheet at the same time. My advice: play nice. Once all the kinks are ironed out it may work to allow everyone to have their own copy.
+4. This sheet relies on the underlying Certified Curriculum Technology and the most recently augmented nightly snapshot. Changes in data in those source sheets can cause issues. If you see something, say something!
 
 
 If you have suggestions for improvements feel free to reach out.
