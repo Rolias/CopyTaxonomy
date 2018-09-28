@@ -22,17 +22,19 @@ function resetColumnSelection() {
   const COLUMN_SELECTOR_AREA = "ColumnSelectors";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const selectColArea = ss.getRangeByName(COLUMN_SELECTOR_AREA);
+  const grid = selectColArea.getValues();
 
   var col;
+  var row;
   for (col = 1; col < 6; col += 2) {
-    selectColArea[col].forEach(function (element, index) {
-      element.setValue = false;
-      if (col < 2 && index < 8) {
-        element.setValue(true);
+    for (row = 0; row < 12; ++row) {
+      if (col < 2 && row < 8) {
+        grid[row][col] = true;
       } else {
-        element.setValue(false);
+        grid[row][col] = false;
       }
-    });
+    }
   }
+  selectColArea.setValues(grid);
 
 }
