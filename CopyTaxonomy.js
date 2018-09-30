@@ -49,7 +49,7 @@ var CopyTaxonomy = (function () {
    * write the proper formulas back into the correct cells.
    */
   function restoreFormulas() {
-    const DEST_SHEET_NAME = "References";
+    const REF_SHEET_NAME = "References";
     const GET_SUPER_DOMAINS = "=UNIQUE('Taxonomy Imported Data'!B:B)";
     const SUPER_DOMAINS_DEST = "F1";
     const GET_PRIMARY_DOMAINS = "=UNIQUE(FILTER('Taxonomy Imported Data'!C:C,TRIM('Taxonomy Imported Data'!B:B)=TRIM(E2)))";
@@ -59,12 +59,20 @@ var CopyTaxonomy = (function () {
     const GET_ATOMIC_TAGS = "=UNIQUE(FILTER('Taxonomy Imported Data'!E:E,TRIM('Taxonomy Imported Data'!D:D)=TRIM(E4)))";
     const ATOMIC_TAGS_DEST = "I2";
 
+    const TAGGING_SHEET_NAME = "Drop-down Tagging Tool";
+    const TOOLS_GET_ATOMIC_TAGS = "=UNIQUE(FILTER('Taxonomy Imported Data'!E:E,TRIM('Taxonomy Imported Data'!D:D)=TRIM(C2)))";
+    const TOOLS_ATOMIC_TAGS_DEST = "D2";
+
     const ss = getHelperSpreadsheet();
-    const sheet = ss.getSheetByName(DEST_SHEET_NAME);
+    var sheet = ss.getSheetByName(REF_SHEET_NAME);
     sheet.getRange(SUPER_DOMAINS_DEST).setValue(GET_SUPER_DOMAINS);
     sheet.getRange(PRIMARY_DOMAINS_DEST).setValue(GET_PRIMARY_DOMAINS);
     sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
     sheet.getRange(ATOMIC_TAGS_DEST).setValue(GET_ATOMIC_TAGS);
+    // Need to replace the atomic tags on the Drop-down Tagging Tool Sheet
+    sheet = ss.getSheetByName(TAGGING_SHEET_NAME);
+    sheet.getRange(TOOLS_ATOMIC_TAGS_DEST).setValue(TOOLS_GET_ATOMIC_TAGS);
+
 
   }
 
