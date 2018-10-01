@@ -1,8 +1,9 @@
 var Utils = (function () {
   'use strict';
   const SRC_SHEET_NAME = "AugCatalogImport";
-  const DEST_SHEET_NAME = "CoursesPerTagging";
+  const DEST_SHEET_NAME = "Courses Per Tagging";
   const SELECT_COLUMNS_SHEET = "Select Columns";
+  const TAGGING_TOOL_SHEET = "Tagging Tool";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
   function fillInColInfo() {
@@ -31,9 +32,17 @@ var Utils = (function () {
 
   function enableSearch(value) {
     const sheet = ss.getSheetByName(SELECT_COLUMNS_SHEET);
+    
     const ENABLE_SEARCH_CELL = "C1";
     sheet.getRange(ENABLE_SEARCH_CELL).setValue(value);
-  }
+    const toolSheet = ss.getSheetByName(TAGGING_TOOL_SHEET);
+    if (value){
+     toolSheet.getRange("E1").setBackgroundRGB(16,207,43);
+    }
+    else{
+      toolSheet.getRange("E1").setBackgroundRGB(207,60,19);
+    }
+    }
 
   return {
     fillInColInfo: fillInColInfo,
