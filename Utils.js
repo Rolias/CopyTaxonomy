@@ -2,6 +2,7 @@ var Utils = (function () {
   'use strict';
   const SRC_SHEET_NAME = "AugCatalogImport";
   const DEST_SHEET_NAME = "CoursesPerTagging";
+  const SELECT_COLUMNS_SHEET = "Select Columns";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
   function fillInColInfo() {
@@ -28,12 +29,30 @@ var Utils = (function () {
     });
   }
 
+  function enableSearch(value) {
+    const sheet = ss.getSheetByName(SELECT_COLUMNS_SHEET);
+    const ENABLE_SEARCH_CELL = "C1";
+    sheet.getRange(ENABLE_SEARCH_CELL).setValue(value);
+  }
+
   return {
-    fillInColInfo: fillInColInfo
+    fillInColInfo: fillInColInfo,
+    enableSearch: enableSearch
   };
 }());
 
 /* exported runFillInColInfo */
 function runFillInColInfo() {
   Utils.fillInColInfo();
+}
+
+
+/* exported enableSearch */
+function enableSearch() {
+  Utils.enableSearch(true);
+}
+
+/* exported disableSearch */
+function disableSearch() {
+  Utils.enableSearch(false);
 }

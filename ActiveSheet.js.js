@@ -17,6 +17,10 @@ function onEdit() {
   }
 }
 
+
+
+
+
 /* exported resetColumnSelection */
 function resetColumnSelection() {
   const COLUMN_SELECTOR_AREA = "ColumnSelectors";
@@ -29,7 +33,7 @@ function resetColumnSelection() {
   const COL_SKIP = 2;
   const MAX_COL = 6;
   const MAX_ROW = 12;
-  
+
   for (col = 1; col < MAX_COL; col += COL_SKIP) {
     for (row = 0; row < MAX_ROW; ++row) {
       if (col < 2 && row < 3) {
