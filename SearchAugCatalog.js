@@ -3,7 +3,7 @@ var AugmentedData = (function () {
   const AUG_CATALOG_ID = "1U5Pv_Bljnl1hCn9yJetn8adnXmzi8JQe_RAPdoLcxOY";
   const TAB_NAME = "CourseData";
 
-  const IMPORT_TAB_NAME = "AugCatalogImport";
+  //const IMPORT_TAB_NAME = "AugCatalogImport";
 
   function getAugmentaedCatalogSheet() {
     const ss = SpreadsheetApp.openById(AUG_CATALOG_ID);
@@ -21,7 +21,7 @@ var AugmentedData = (function () {
 
   function getImportCatalogSheet() {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = ss.getSheetByName(IMPORT_TAB_NAME);
+    const sheet = ss.getSheetByName(Utils.AUG_CATALOG_IMPORT_SHEET);
     return sheet;
   }
 

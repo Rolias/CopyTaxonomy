@@ -59,7 +59,7 @@ var CopyTaxonomy = (function () {
     const GET_ATOMIC_TAGS = "=UNIQUE(FILTER('Taxonomy Imported Data'!E:E,TRIM('Taxonomy Imported Data'!D:D)=TRIM(E4)))";
     const ATOMIC_TAGS_DEST = "I2";
 
-    const TAGGING_SHEET_NAME = "Drop-down Tagging Tool";
+
     const TOOLS_GET_ATOMIC_TAGS = "=UNIQUE(FILTER('Taxonomy Imported Data'!E:E,TRIM('Taxonomy Imported Data'!D:D)=TRIM(C2)))";
     const TOOLS_ATOMIC_TAGS_DEST = "D2";
 
@@ -70,7 +70,7 @@ var CopyTaxonomy = (function () {
     sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
     sheet.getRange(ATOMIC_TAGS_DEST).setValue(GET_ATOMIC_TAGS);
     // Need to replace the atomic tags on the Drop-down Tagging Tool Sheet
-    sheet = ss.getSheetByName(TAGGING_SHEET_NAME);
+    sheet = ss.getSheetByName(Utils.TAGGING_SHEET_NAME);
     sheet.getRange(TOOLS_ATOMIC_TAGS_DEST).setValue(TOOLS_GET_ATOMIC_TAGS);
 
 
