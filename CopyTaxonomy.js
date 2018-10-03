@@ -67,12 +67,15 @@ var CopyTaxonomy = (function () {
 
     const ss = getHelperSpreadsheet();
     var sheet = ss.getSheetByName(Utils.REFERENCES_SHEET);
+    Logger.log(Utils.REFERENCES_SHEET);
+    Logger.log(Utils.TAGGING_TOOL_SHEET);
+ 
     sheet.getRange(SUPER_DOMAINS_DEST).setValue(GET_SUPER_DOMAINS);
     sheet.getRange(PRIMARY_DOMAINS_DEST).setValue(GET_PRIMARY_DOMAINS);
     sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
     sheet.getRange(ATOMIC_TAGS_DEST).setValue(GET_ATOMIC_TAGS);
-    // Need to replace the atomic tags on the Drop-down Tagging Tool Sheet
-    sheet = ss.getSheetByName(Utils.TAGGING_SHEET_NAME);
+    // Need to replace the atomic tags on the  Tagging Tool Sheet
+    sheet = ss.getSheetByName(Utils.TAGGING_TOOL_SHEET);
     sheet.getRange(TOOLS_ATOMIC_TAGS_DEST).setValue(TOOLS_GET_ATOMIC_TAGS);
     //Fix the query on that shows the matching taxonomy for the selected Tag
     sheet = ss.getSheetByName(Utils.TAXONOMY_FOR_TAG_SHEET);

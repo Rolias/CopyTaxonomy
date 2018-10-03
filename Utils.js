@@ -7,6 +7,7 @@ var Utils = (function () {
   const REFERENCES_SHEET = "References";
   const TAXONOMY_FOR_TAG_SHEET = "Taxonomy for Atomic Tag";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  Logger.log("The Utils has run");
 
   function fillInColInfo() {
 
@@ -53,7 +54,7 @@ var Utils = (function () {
     COURSES_PER_TAGGING_SHEET: COURSES_PER_TAGGING_SHEET,
     SELECT_COLUMNS_SHEET: SELECT_COLUMNS_SHEET,
     TAGGING_TOOL_SHEET: TAGGING_TOOL_SHEET,
-    REFERENCES_SHEET: REFERENCES_SHEET.enableSearch,
+    REFERENCES_SHEET: REFERENCES_SHEET,
     TAXONOMY_FOR_TAG_SHEET: TAXONOMY_FOR_TAG_SHEET
   };
 }());
