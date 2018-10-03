@@ -4,6 +4,8 @@ var Utils = (function () {
   const COURSES_PER_TAGGING_SHEET = "Courses Per Tagging";
   const SELECT_COLUMNS_SHEET = "Select Columns";
   const TAGGING_TOOL_SHEET = "Tagging Tool";
+  const REFERENCES_SHEET = "References";
+  const TAXONOMY_FOR_TAG_SHEET = "Taxonomy for Atomic Tag";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
   function fillInColInfo() {
@@ -50,7 +52,9 @@ var Utils = (function () {
     AUG_CATALOG_IMPORT_SHEET: AUG_CATALOG_IMPORT_SHEET,
     COURSES_PER_TAGGING_SHEET: COURSES_PER_TAGGING_SHEET,
     SELECT_COLUMNS_SHEET: SELECT_COLUMNS_SHEET,
-    TAGGING_TOOL_SHEET: TAGGING_TOOL_SHEET
+    TAGGING_TOOL_SHEET: TAGGING_TOOL_SHEET,
+    REFERENCES_SHEET: REFERENCES_SHEET.enableSearch,
+    TAXONOMY_FOR_TAG_SHEET: TAXONOMY_FOR_TAG_SHEET
   };
 }());
 
