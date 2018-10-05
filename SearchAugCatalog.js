@@ -5,7 +5,7 @@ var AugmentedData = (function () {
 
   //const IMPORT_TAB_NAME = "AugCatalogImport";
 
-  function getAugmentaedCatalogSheet() {
+  function getAugmentedCatalogSheet() {
     const ss = SpreadsheetApp.openById(AUG_CATALOG_ID);
     const sheet = ss.getSheetByName(TAB_NAME);
     return sheet;
@@ -13,7 +13,7 @@ var AugmentedData = (function () {
 
   function getAugmentedCatalogData() {
 
-    const sheet = getAugmentaedCatalogSheet();
+    const sheet = getAugmentedCatalogSheet();
     const fullDataRange = sheet.getDataRange();
     const allData = fullDataRange.getValues();
     return allData;
