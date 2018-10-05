@@ -1,3 +1,4 @@
+// @ts-check
 var Utils = (function () {
   'use strict';
   const AUG_CATALOG_IMPORT_SHEET = "AugCatalogImport";
@@ -46,8 +47,18 @@ var Utils = (function () {
       toolSheet.getRange("E1").setBackgroundRGB(207, 60, 19);
     }
   }
+  function countCells() {
+
+    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets()
+    var cells_count = 0;
+    for (var i in sheets) {
+      cells_count += (sheets[i].getMaxColumns() * sheets[i].getMaxRows());
+    }
+    Logger.log(cells_count)
+  }
 
   return {
+    countCells: countCells,
     fillInColInfo: fillInColInfo,
     enableSearch: enableSearch,
     AUG_CATALOG_IMPORT_SHEET: AUG_CATALOG_IMPORT_SHEET,
@@ -73,4 +84,8 @@ function enableSearch() {
 /* exported disableSearch */
 function disableSearch() {
   Utils.enableSearch(false);
+}
+
+function logCellCount() {
+  Utils.countCells();
 }
