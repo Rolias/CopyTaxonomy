@@ -7,6 +7,7 @@ var Utils = (function () {
   const TAGGING_TOOL_SHEET = "Tagging Tool";
   const REFERENCES_SHEET = "References";
   const TAXONOMY_FOR_TAG_SHEET = "Taxonomy for Atomic Tag";
+  const TAXONOMY_IMPORT_SHEET = "Taxonomy Imported Data";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   Logger.log("The Utils has run");
 
@@ -47,18 +48,19 @@ var Utils = (function () {
       toolSheet.getRange("E1").setBackgroundRGB(207, 60, 19);
     }
   }
-  function countCells() {
-
-    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets()
+  function setCellCount() {
+    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
     var cells_count = 0;
-    for (var i in sheets) {
-      cells_count += (sheets[i].getMaxColumns() * sheets[i].getMaxRows());
-    }
-    Logger.log(cells_count)
+    sheets.forEach(function (eachSheet) {
+      cells_count += eachSheet.getMaxColumns() * eachSheet.getMaxRows();
+    });
+
+    const sheet = ss.getSheetByName(TAGGING_TOOL_SHEET);
+    sheet.getRange("F2").setValue(cells_count);
   }
 
   return {
-    countCells: countCells,
+    setCellCount: setCellCount,
     fillInColInfo: fillInColInfo,
     enableSearch: enableSearch,
     AUG_CATALOG_IMPORT_SHEET: AUG_CATALOG_IMPORT_SHEET,
@@ -66,7 +68,8 @@ var Utils = (function () {
     SELECT_COLUMNS_SHEET: SELECT_COLUMNS_SHEET,
     TAGGING_TOOL_SHEET: TAGGING_TOOL_SHEET,
     REFERENCES_SHEET: REFERENCES_SHEET,
-    TAXONOMY_FOR_TAG_SHEET: TAXONOMY_FOR_TAG_SHEET
+    TAXONOMY_FOR_TAG_SHEET: TAXONOMY_FOR_TAG_SHEET,
+    TAXONOMY_IMPORT_SHEET: TAXONOMY_IMPORT_SHEET
   };
 }());
 
@@ -85,7 +88,7 @@ function enableSearch() {
 function disableSearch() {
   Utils.enableSearch(false);
 }
-
-function logCellCount() {
-  Utils.countCells();
+/* exported testSetCellCount */
+function testSetCellCount() {
+  Utils.setCellCount();
 }

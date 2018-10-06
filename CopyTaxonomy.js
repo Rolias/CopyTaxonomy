@@ -67,9 +67,7 @@ var CopyTaxonomy = (function () {
 
     const ss = getHelperSpreadsheet();
     var sheet = ss.getSheetByName(Utils.REFERENCES_SHEET);
-    Logger.log(Utils.REFERENCES_SHEET);
-    Logger.log(Utils.TAGGING_TOOL_SHEET);
- 
+
     sheet.getRange(SUPER_DOMAINS_DEST).setValue(GET_SUPER_DOMAINS);
     sheet.getRange(PRIMARY_DOMAINS_DEST).setValue(GET_PRIMARY_DOMAINS);
     sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
@@ -80,12 +78,22 @@ var CopyTaxonomy = (function () {
     //Fix the query on that shows the matching taxonomy for the selected Tag
     sheet = ss.getSheetByName(Utils.TAXONOMY_FOR_TAG_SHEET);
     sheet.getRange(QUERY_TAXONOMY_MATCHES_DEST).setValue(QUERY_TAXONOMY_MATCHES);
+  }
 
+  function restoreAtomicTagValidation() {
+    const ss = getHelperSpreadsheet();
+    var sheet = ss.getSheetByName(Utils.TAXONOMY_FOR_TAG_SHEET);
+    var cell = sheet.getRange('B1');
+    var importedTaxonomySheet = ss.getSheetByName(Utils.TAXONOMY_IMPORT_SHEET);
+    var range = importedTaxonomySheet.getRange('E: E');
+    var rule = SpreadsheetApp.newDataValidation().requireValueInRange(range).build();
+    cell.setDataValidation(rule);
   }
 
   return {
     copyCertifiedToHelper: copyCertifiedToHelper,
-    restoreFormulas: restoreFormulas
+    restoreFormulas: restoreFormulas,
+    restoreAtomicTagValidation: restoreAtomicTagValidation
   };
 
 }());
@@ -94,4 +102,10 @@ var CopyTaxonomy = (function () {
 function copyTaxonomyData() {
   CopyTaxonomy.copyCertifiedToHelper();
   CopyTaxonomy.restoreFormulas();
+  CopyTaxonomy.restoreAtomicTagValidation();
+}
+
+/* exported testRestoreValidation */
+function testRestoreValidation() {
+  CopyTaxonomy.restoreAtomicTagValidation();
 }
