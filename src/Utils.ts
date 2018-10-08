@@ -8,23 +8,28 @@ let Utils = (function () {
   const REFERENCES_SHEET = "References";
   const TAXONOMY_FOR_TAG_SHEET = "Taxonomy for Atomic Tag";
   const TAXONOMY_IMPORT_SHEET = "Taxonomy Imported Data";
+  const NON_EXISTENT_SHEET = "KEEP SCRIPT FROM OVERWRITING DATA"
   const ss = SpreadsheetApp.getActiveSpreadsheet();
 
+  // Only needed one time to grab the column names of the augmented snapshot and write them
+  // into the taxonomy helper SELECT COLUMNS SHEET
+  // After this was run columns were rearranged so running this again could overwrite valuable data
+  // So the dest_sheet was changed to a non-existent sheet. Just wanted to keep the code
+  // as an example and in case we need to grab all the augmented columns again
   function fillInColInfo() {
 
     const source_sheet = ss.getSheetByName(AUG_CATALOG_IMPORT_SHEET);
-    const dest_sheet = ss.getSheetByName(COURSES_PER_TAGGING_SHEET);
+    const dest_sheet = ss.getSheetByName(NON_EXISTENT_SHEET);
 
     const START_ROW = 5;
     const MAX_ROW = 14;
-    var dest_col = 1;
-    var dest_row = START_ROW;
+    let dest_col = 1;
+    let dest_row = START_ROW;
     const COL_INCREMENT = 2;
     const titles = source_sheet.getRange("1:1").getValues();
 
     titles[0].forEach(function (element) {
       dest_sheet.getRange(dest_row, dest_col).setValue(element);
-      Logger.log(element + " row " + " col");
       dest_row += 1;
       if (dest_row > MAX_ROW) {
         dest_row = START_ROW;
