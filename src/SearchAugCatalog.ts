@@ -1,4 +1,5 @@
-import Utils from './Utils'
+// @ts-check
+import utils from './Utils'
 
 var augmentedData = (function () {
   'use strict';
@@ -21,7 +22,7 @@ var augmentedData = (function () {
 
   function getImportCatalogSheet() {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = ss.getSheetByName(Utils.AUG_CATALOG_IMPORT_SHEET);
+    const sheet = ss.getSheetByName(utils.AUG_CATALOG_IMPORT_SHEET);
     return sheet;
   }
 
