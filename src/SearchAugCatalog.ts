@@ -1,3 +1,5 @@
+import Utils from './Utils'
+
 var AugmentedData = (function () {
   'use strict';
   const AUG_CATALOG_ID = "1U5Pv_Bljnl1hCn9yJetn8adnXmzi8JQe_RAPdoLcxOY";
@@ -25,7 +27,7 @@ var AugmentedData = (function () {
     return sheet;
   }
 
-  function copyDataToSheet(data, sheet) {
+  function copyDataToSheet(data: DataValues, sheet: Sheet) {
     const rows = data.length;
     const cols = data[0].length;
     sheet.getRange(1, 1, rows, cols).setValues(data);

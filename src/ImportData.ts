@@ -1,8 +1,7 @@
-// @ts-check
-
 
 var ImportData = (function () {
   'use strict';
+
   const SRC_AUG_CATALOG_ID = "1U5Pv_Bljnl1hCn9yJetn8adnXmzi8JQe_RAPdoLcxOY";
   const SRC_CATALOG_SHEET_NAME = "CourseData";
   const DEST_CATALOG_SHEET_NAME = "SnapshotCourses";
@@ -17,7 +16,7 @@ var ImportData = (function () {
     return ss.getSheetByName(SRC_CATALOG_SHEET_NAME);
   }
 
-  function getData(sheet) {
+  function getData(sheet: Sheet) {
     const fullDataRange = sheet.getDataRange();
     return fullDataRange.getValues();
   }
@@ -47,7 +46,7 @@ var ImportData = (function () {
     return ss.getSheetByName(DEST_PIPELINE_SHEET_NAME);
   }
 
-  function copyDataToSheet(data, sheet) {
+  function copyDataToSheet(data: DataValues, sheet: Sheet) {
     const rows = data.length;
     const cols = data[0].length;
     sheet.getRange(1, 1, rows, cols).setValues(data);

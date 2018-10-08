@@ -1,5 +1,5 @@
-// @ts-check
-var Utils = (function () {
+
+let Utils = (function () {
   'use strict';
   const AUG_CATALOG_IMPORT_SHEET = "AugCatalogImport";
   const COURSES_PER_TAGGING_SHEET = "Courses Per Tagging";
@@ -35,7 +35,7 @@ var Utils = (function () {
     });
   }
 
-  function enableSearch(value) {
+  function enableSearch(value: Boolean) {
     const sheet = ss.getSheetByName(SELECT_COLUMNS_SHEET);
 
     const ENABLE_SEARCH_CELL = "C1";
@@ -72,6 +72,7 @@ var Utils = (function () {
     TAXONOMY_IMPORT_SHEET: TAXONOMY_IMPORT_SHEET
   };
 }());
+export default Utils;
 
 /* exported runFillInColInfo */
 function runFillInColInfo() {

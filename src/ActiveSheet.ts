@@ -1,3 +1,4 @@
+// @ts-check
 /* exported onEdit */
 function onEdit() {
 
@@ -16,9 +17,6 @@ function onEdit() {
     ss.getRange("SubdomainSetting").setValue("");
   }
 }
-
-
-
 
 
 /* exported resetColumnSelection */

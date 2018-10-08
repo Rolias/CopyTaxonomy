@@ -1,5 +1,8 @@
+import Utils from "./Utils";
+
 var CopyTaxonomy = (function () {
   'use strict';
+
   const SRC_TAXONOMY_ID = "1qH54_e5c5HXUdOLYDn5jgMpyvpsgi6Pn2me9IVx9yIQ";
   const SRC_TAB_NAME = "v3 Domain Tags - View 2";
 
@@ -29,7 +32,8 @@ var CopyTaxonomy = (function () {
     const sheet = ss.getSheetByName(DEST_TAB_NAME);
     return sheet;
   }
-  function copyDataToSheet(data, sheet) {
+
+  function copyDataToSheet(data: Object[][], sheet: Sheet) {
     const rows = data.length;
     const cols = data[0].length;
     sheet.getRange(1, 1, rows, cols).setValues(data);
