@@ -89,7 +89,7 @@ var CopyTaxonomy = (function () {
     var sheet = ss.getSheetByName(Utils.TAXONOMY_FOR_TAG_SHEET);
     var cell = sheet.getRange('B1');
     var importedTaxonomySheet = ss.getSheetByName(Utils.TAXONOMY_IMPORT_SHEET);
-    var range = importedTaxonomySheet.getRange('E: E');
+    var range = importedTaxonomySheet.getRange('E:E');
     var rule = SpreadsheetApp.newDataValidation().requireValueInRange(range).build();
     cell.setDataValidation(rule);
   }

@@ -5,8 +5,6 @@ var AugmentedData = (function () {
   const AUG_CATALOG_ID = "1U5Pv_Bljnl1hCn9yJetn8adnXmzi8JQe_RAPdoLcxOY";
   const TAB_NAME = "CourseData";
 
-  //const IMPORT_TAB_NAME = "AugCatalogImport";
-
   function getAugmentedCatalogSheet() {
     const ss = SpreadsheetApp.openById(AUG_CATALOG_ID);
     const sheet = ss.getSheetByName(TAB_NAME);

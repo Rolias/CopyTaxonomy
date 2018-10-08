@@ -9,7 +9,6 @@ let Utils = (function () {
   const TAXONOMY_FOR_TAG_SHEET = "Taxonomy for Atomic Tag";
   const TAXONOMY_IMPORT_SHEET = "Taxonomy Imported Data";
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  Logger.log("The Utils has run");
 
   function fillInColInfo() {
 
@@ -31,7 +30,6 @@ let Utils = (function () {
         dest_row = START_ROW;
         dest_col += COL_INCREMENT;
       }
-
     });
   }
 
@@ -73,6 +71,8 @@ let Utils = (function () {
   };
 }());
 export default Utils;
+
+//Make it convenient to run these from the Google Apps Script Editor
 
 /* exported runFillInColInfo */
 function runFillInColInfo() {
