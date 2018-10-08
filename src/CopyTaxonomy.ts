@@ -1,6 +1,6 @@
-import Utils from "./Utils";
+import utils from "./Utils";
 
-var CopyTaxonomy = (function () {
+var copyTaxonomy = (function () {
   'use strict';
 
   const SRC_TAXONOMY_ID = "1qH54_e5c5HXUdOLYDn5jgMpyvpsgi6Pn2me9IVx9yIQ";
@@ -70,25 +70,25 @@ var CopyTaxonomy = (function () {
     const QUERY_TAXONOMY_MATCHES_DEST = "A9";
 
     const ss = getHelperSpreadsheet();
-    var sheet = ss.getSheetByName(Utils.REFERENCES_SHEET);
+    var sheet = ss.getSheetByName(utils.REFERENCES_SHEET);
 
     sheet.getRange(SUPER_DOMAINS_DEST).setValue(GET_SUPER_DOMAINS);
     sheet.getRange(PRIMARY_DOMAINS_DEST).setValue(GET_PRIMARY_DOMAINS);
     sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
     sheet.getRange(ATOMIC_TAGS_DEST).setValue(GET_ATOMIC_TAGS);
     // Need to replace the atomic tags on the  Tagging Tool Sheet
-    sheet = ss.getSheetByName(Utils.TAGGING_TOOL_SHEET);
+    sheet = ss.getSheetByName(utils.TAGGING_TOOL_SHEET);
     sheet.getRange(TOOLS_ATOMIC_TAGS_DEST).setValue(TOOLS_GET_ATOMIC_TAGS);
     //Fix the query on that shows the matching taxonomy for the selected Tag
-    sheet = ss.getSheetByName(Utils.TAXONOMY_FOR_TAG_SHEET);
+    sheet = ss.getSheetByName(utils.TAXONOMY_FOR_TAG_SHEET);
     sheet.getRange(QUERY_TAXONOMY_MATCHES_DEST).setValue(QUERY_TAXONOMY_MATCHES);
   }
 
   function restoreAtomicTagValidation() {
     const ss = getHelperSpreadsheet();
-    var sheet = ss.getSheetByName(Utils.TAXONOMY_FOR_TAG_SHEET);
+    var sheet = ss.getSheetByName(utils.TAXONOMY_FOR_TAG_SHEET);
     var cell = sheet.getRange('B1');
-    var importedTaxonomySheet = ss.getSheetByName(Utils.TAXONOMY_IMPORT_SHEET);
+    var importedTaxonomySheet = ss.getSheetByName(utils.TAXONOMY_IMPORT_SHEET);
     var range = importedTaxonomySheet.getRange('E:E');
     var rule = SpreadsheetApp.newDataValidation().requireValueInRange(range).build();
     cell.setDataValidation(rule);
@@ -104,12 +104,12 @@ var CopyTaxonomy = (function () {
 
 /* exported copyTaxonomyData */
 function copyTaxonomyData() {
-  CopyTaxonomy.copyCertifiedToHelper();
-  CopyTaxonomy.restoreFormulas();
-  CopyTaxonomy.restoreAtomicTagValidation();
+  copyTaxonomy.copyCertifiedToHelper();
+  copyTaxonomy.restoreFormulas();
+  copyTaxonomy.restoreAtomicTagValidation();
 }
 
 /* exported testRestoreValidation */
 function testRestoreValidation() {
-  CopyTaxonomy.restoreAtomicTagValidation();
+  copyTaxonomy.restoreAtomicTagValidation();
 }

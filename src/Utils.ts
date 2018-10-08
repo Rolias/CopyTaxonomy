@@ -1,5 +1,5 @@
 
-let Utils = (function () {
+let utils = (function () {
   'use strict';
   const AUG_CATALOG_IMPORT_SHEET = "AugCatalogImport";
   const COURSES_PER_TAGGING_SHEET = "Courses Per Tagging";
@@ -75,26 +75,26 @@ let Utils = (function () {
     TAXONOMY_IMPORT_SHEET: TAXONOMY_IMPORT_SHEET
   };
 }());
-export default Utils;
+export default utils;
 
 //Make it convenient to run these from the Google Apps Script Editor
 
 /* exported runFillInColInfo */
 function runFillInColInfo() {
-  Utils.fillInColInfo();
+  utils.fillInColInfo();
 }
 
 
 /* exported enableSearch */
 function enableSearch() {
-  Utils.enableSearch(true);
+  utils.enableSearch(true);
 }
 
 /* exported disableSearch */
 function disableSearch() {
-  Utils.enableSearch(false);
+  utils.enableSearch(false);
 }
 /* exported testSetCellCount */
 function testSetCellCount() {
-  Utils.setCellCount();
+  utils.setCellCount();
 }

@@ -1,6 +1,6 @@
 import Utils from './Utils'
 
-var AugmentedData = (function () {
+var augmentedData = (function () {
   'use strict';
   const AUG_CATALOG_ID = "1U5Pv_Bljnl1hCn9yJetn8adnXmzi8JQe_RAPdoLcxOY";
   const TAB_NAME = "CourseData";
@@ -46,5 +46,5 @@ var AugmentedData = (function () {
 /* exported importAugmentedData */
 function importAugmentedData() {
 
-  AugmentedData.importAugmentedData();
+  augmentedData.importAugmentedData();
 }
