@@ -1,0 +1,13 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-clean-code"
+  ],
+  "jsRules": {},
+  "rules": {
+    "newspaper-order": true,
+    "no-var-keyword": true,
+    "no-duplicate-keyword": true
+  },
+  "rulesDirectory": []
+}
