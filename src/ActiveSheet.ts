@@ -3,9 +3,9 @@
 function onEdit() {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var cell = ss.getCurrentCell();
-  var col = cell.getColumn();
-  var row = cell.getRow();
+  let cell = ss.getCurrentCell();
+  let col = cell.getColumn();
+  let row = cell.getRow();
 
   const SUPER_DOMAIN_COL = 1;
   const PRIMARY_DOMAIN_COL = 2;
@@ -26,8 +26,8 @@ function resetColumnSelection() {
   const selectColArea = ss.getRangeByName(COLUMN_SELECTOR_AREA);
   const grid = selectColArea.getValues();
 
-  var col;
-  var row;
+  let col;
+  let row;
   const COL_SKIP = 2;
   const MAX_COL = 6;
   const MAX_ROW = 12;

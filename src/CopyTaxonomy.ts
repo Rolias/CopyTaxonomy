@@ -9,44 +9,6 @@ var copyTaxonomy = (function () {
   const DEST_TAXONOMY_HELPER_ID = "1COFXG7xD_fuc7bS2CqGoe1G5pacWOwE5xynP1ERZ-gA";
 
 
-  function getCertifiedCurriculumSheet() {
-    const ss = SpreadsheetApp.openById(SRC_TAXONOMY_ID);
-    const sheet = ss.getSheetByName(SRC_TAB_NAME);
-    return sheet;
-  }
-
-  function getTaxonomyData() {
-
-    const sheet = getCertifiedCurriculumSheet();
-    const fullDataRange = sheet.getDataRange();
-    const allData = fullDataRange.getValues();
-    return allData;
-  }
-  function getHelperSpreadsheet() {
-    return SpreadsheetApp.openById(DEST_TAXONOMY_HELPER_ID);
-  }
-
-  function getHelperSheet() {
-    const DEST_TAB_NAME = "Taxonomy Imported Data";
-    const ss = getHelperSpreadsheet();
-    const sheet = ss.getSheetByName(DEST_TAB_NAME);
-    return sheet;
-  }
-
-  function copyDataToSheet(data: Object[][], sheet: Sheet) {
-    const rows = data.length;
-    const cols = data[0].length;
-    sheet.getRange(1, 1, rows, cols).setValues(data);
-  }
-
-  function copyCertifiedToHelper() {
-    const fullData = getTaxonomyData();
-    const sheet = getHelperSheet();
-    copyDataToSheet(fullData, sheet);
-    sheet.deleteRows(1, 4);
-    sheet.deleteColumns(2, 12);
-    sheet.setFrozenRows(1);
-  }
   /**
    * restoreFormulas - When the new taxonomy data is copied in the formulas behind the dropdowns
    * are getting wiped out with invalid References. I have no idea why so this is a kludge to just 
@@ -70,28 +32,69 @@ var copyTaxonomy = (function () {
     const QUERY_TAXONOMY_MATCHES_DEST = "A9";
 
     const ss = getHelperSpreadsheet();
-    var sheet = ss.getSheetByName(utils.REFERENCES_SHEET);
+    const ref_sheet = ss.getSheetByName(utils.REFERENCES_SHEET);
 
-    sheet.getRange(SUPER_DOMAINS_DEST).setValue(GET_SUPER_DOMAINS);
-    sheet.getRange(PRIMARY_DOMAINS_DEST).setValue(GET_PRIMARY_DOMAINS);
-    sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
-    sheet.getRange(ATOMIC_TAGS_DEST).setValue(GET_ATOMIC_TAGS);
+    ref_sheet.getRange(SUPER_DOMAINS_DEST).setValue(GET_SUPER_DOMAINS);
+    ref_sheet.getRange(PRIMARY_DOMAINS_DEST).setValue(GET_PRIMARY_DOMAINS);
+    ref_sheet.getRange(SUB_DOMAINS_DEST).setValue(GET_SUB_DOMAINS);
+    ref_sheet.getRange(ATOMIC_TAGS_DEST).setValue(GET_ATOMIC_TAGS);
+
     // Need to replace the atomic tags on the  Tagging Tool Sheet
-    sheet = ss.getSheetByName(utils.TAGGING_TOOL_SHEET);
-    sheet.getRange(TOOLS_ATOMIC_TAGS_DEST).setValue(TOOLS_GET_ATOMIC_TAGS);
+    const tag_tool_sheet = ss.getSheetByName(utils.TAGGING_TOOL_SHEET);
+    tag_tool_sheet.getRange(TOOLS_ATOMIC_TAGS_DEST).setValue(TOOLS_GET_ATOMIC_TAGS);
+
     //Fix the query on that shows the matching taxonomy for the selected Tag
-    sheet = ss.getSheetByName(utils.TAXONOMY_FOR_TAG_SHEET);
-    sheet.getRange(QUERY_TAXONOMY_MATCHES_DEST).setValue(QUERY_TAXONOMY_MATCHES);
+    const taxonomy_sheet = ss.getSheetByName(utils.TAXONOMY_FOR_TAG_SHEET);
+    taxonomy_sheet.getRange(QUERY_TAXONOMY_MATCHES_DEST).setValue(QUERY_TAXONOMY_MATCHES);
   }
 
   function restoreAtomicTagValidation() {
     const ss = getHelperSpreadsheet();
-    var sheet = ss.getSheetByName(utils.TAXONOMY_FOR_TAG_SHEET);
-    var cell = sheet.getRange('B1');
-    var importedTaxonomySheet = ss.getSheetByName(utils.TAXONOMY_IMPORT_SHEET);
-    var range = importedTaxonomySheet.getRange('E:E');
-    var rule = SpreadsheetApp.newDataValidation().requireValueInRange(range).build();
+    let sheet = ss.getSheetByName(utils.TAXONOMY_FOR_TAG_SHEET);
+    let cell = sheet.getRange('B1');
+    let importedTaxonomySheet = ss.getSheetByName(utils.TAXONOMY_IMPORT_SHEET);
+    let range = importedTaxonomySheet.getRange('E:E');
+    let rule = SpreadsheetApp.newDataValidation().requireValueInRange(range).build();
     cell.setDataValidation(rule);
+  }
+  function copyCertifiedToHelper() {
+    const fullData = getTaxonomyData();
+    const sheet = getHelperSheet();
+    copyDataToSheet(fullData, sheet);
+    sheet.deleteRows(1, 4);
+    sheet.deleteColumns(2, 12);
+    sheet.setFrozenRows(1);
+  }
+
+  function getTaxonomyData() {
+
+    const sheet = getCertifiedCurriculumSheet();
+    const fullDataRange = sheet.getDataRange();
+    const allData = fullDataRange.getValues();
+    return allData;
+  }
+  function getCertifiedCurriculumSheet() {
+    const ss = SpreadsheetApp.openById(SRC_TAXONOMY_ID);
+    const sheet = ss.getSheetByName(SRC_TAB_NAME);
+    return sheet;
+  }
+
+  function getHelperSheet() {
+    const DEST_TAB_NAME = "Taxonomy Imported Data";
+    const ss = getHelperSpreadsheet();
+    const sheet = ss.getSheetByName(DEST_TAB_NAME);
+    return sheet;
+  }
+
+  function getHelperSpreadsheet() {
+    return SpreadsheetApp.openById(DEST_TAXONOMY_HELPER_ID);
+  }
+
+
+  function copyDataToSheet(data: Object[][], sheet: Sheet) {
+    const rows = data.length;
+    const cols = data[0].length;
+    sheet.getRange(1, 1, rows, cols).setValues(data);
   }
 
   return {
