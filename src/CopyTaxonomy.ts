@@ -1,11 +1,16 @@
-import { ISheetCopier } from "./SheetCopierTypes";
+import { SheetCopier } from "./SheetCopierTypes";
 import utils from "./Utils";
-declare var SheetCopier: ISheetCopier;
 
 const SRC_TAXONOMY_ID = "1qH54_e5c5HXUdOLYDn5jgMpyvpsgi6Pn2me9IVx9yIQ";
 const SRC_TAB_NAME = "v3 Domain Tags - View 2";
 const DEST_TAB_NAME = "Taxonomy Imported Data";
 const DEST_TAXONOMY_HELPER_ID = "1COFXG7xD_fuc7bS2CqGoe1G5pacWOwE5xynP1ERZ-gA";
+
+export function copyTaxonomyData() {
+  copyCertifiedToHelper();
+  restoreFormulas();
+  restoreAtomicTagValidation();
+}
 
 /**
  * restoreFormulas - When the new taxonomy data is copied in the formulas behind the dropdowns
@@ -62,13 +67,7 @@ function copyCertifiedToHelper(): void {
   sheet.setFrozenRows(1);
 }
 
-function getTaxonomyData(): DataValues {
+function getTaxonomyData(): SheetCopier.DataValues {
   const sheet = SheetCopier.getNamedSheetFromId(SRC_TAXONOMY_ID, SRC_TAB_NAME);
   return SheetCopier.getDataFromSheet(sheet);
-}
-
-export function copyTaxonomyData() {
-  copyCertifiedToHelper();
-  restoreFormulas();
-  restoreAtomicTagValidation();
 }
