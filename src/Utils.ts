@@ -52,8 +52,8 @@ let utils = (function () {
     }
   }
   function setCellCount() {
-    var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
-    var cells_count = 0;
+    let sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+    let cells_count = 0;
     sheets.forEach(function (eachSheet) {
       cells_count += eachSheet.getMaxColumns() * eachSheet.getMaxRows();
     });
