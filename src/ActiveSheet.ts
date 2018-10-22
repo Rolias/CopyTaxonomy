@@ -3,9 +3,9 @@
 function onEdit() {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  let cell = ss.getCurrentCell();
-  let col = cell.getColumn();
-  let row = cell.getRow();
+  const cell = ss.getCurrentCell();
+  const col = cell.getColumn();
+  const row = cell.getRow();
 
   const SUPER_DOMAIN_COL = 1;
   const PRIMARY_DOMAIN_COL = 2;
@@ -13,11 +13,10 @@ function onEdit() {
 
   if ((col === SUPER_DOMAIN_COL) && (row === SETTINGS_ROW)) {
     ss.getRange("PrimarySubSettings").setValue("");
-  } else if (col == PRIMARY_DOMAIN_COL && row == SETTINGS_ROW) {
+  } else if (col === PRIMARY_DOMAIN_COL && row === SETTINGS_ROW) {
     ss.getRange("SubdomainSetting").setValue("");
   }
 }
-
 
 /* exported resetColumnSelection */
 function resetColumnSelection() {
