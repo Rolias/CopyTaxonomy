@@ -10,6 +10,7 @@ export function importAugmentedData(): void {
   SheetCopier.copyDataToSheet(fullData, sheet);
 }
 function getAugmentedCatalogData(): SheetCopier.DataValues {
+  Logger.log("Just a place to set a breakpoint");
   const sheet = SheetCopier.getNamedSheetFromId(AUG_CATALOG_ID, TAB_NAME);
   return SheetCopier.getDataFromSheet(sheet);
 }

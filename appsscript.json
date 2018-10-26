@@ -1,11 +1,13 @@
 {
   "timeZone": "America/Los_Angeles",
   "dependencies": {
-    "libraries": [{
-      "userSymbol": "SheetCopier",
-      "libraryId": "1R8GMaKsT1fDeTVsjHbrV9-Ij1zOKOZJc2r0vbK0QHZpa-npJU8TnFgIy",
-      "version": "12"
-    }]
+    "libraries": [
+      {
+        "userSymbol": "SheetCopier",
+        "libraryId": "1R8GMaKsT1fDeTVsjHbrV9-Ij1zOKOZJc2r0vbK0QHZpa-npJU8TnFgIy",
+        "version": "14"
+      }
+    ]
   },
   "exceptionLogging": "STACKDRIVER"
 }
